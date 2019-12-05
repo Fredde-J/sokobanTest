@@ -163,8 +163,10 @@ export default{
         },
         moveUp(){
             this.playerPosition.y=(this.playerPosition.y)-1;
-            console.log(this.playerPosition)
+            console.log(this.playerPosition.x)
+            console.log(this.playerPosition.y)
             this.onMovePlayerOnClick(this.playerPosition.x,this.playerPosition.y)
+            
         },
         moveDown(){
             this.playerPosition.y=(this.playerPosition.y)+1;
