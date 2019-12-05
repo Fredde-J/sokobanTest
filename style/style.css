@@ -124,3 +124,8 @@
     color: red;
     font-size: 80px;
  }
+ #controlButtons{
+     display:flex;
+     flex-direction: column;
+     align-items: flex-start;
+ }

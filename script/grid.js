@@ -1,13 +1,14 @@
 import Tile from './Tile.js'
-import Player from './player.js'
+/*import Player from './player.js'*/
 
 export default{
     props:['difficulty','displayGrid'],
     components:{
         Tile,
-        Player
+        /*Player*/
     },
     template: `
+    <div>
     <div id="grid">
     <Tile 
         v-for="(tile, id) of flatTiles"
@@ -15,7 +16,14 @@ export default{
         :key="'tile'+ id + tile.x + tile.y"
         id="grids"
         @movePlayerOnClick="onMovePlayerOnClick"></Tile>
-        <Player class="Player"></Player>
+       <Player class="Player"></Player>
+    </div>
+    <div id="controlButtons">
+    <button @click="moveUp">up</button>
+    <button @click="moveDown">down</button>
+    <button @click="moveLeft">right</button>
+    <button @click="moveRight">left</button>
+    </div>
     </div>
     `,
     data(){
@@ -153,10 +161,34 @@ export default{
             console.log(this.tiles[y][x])
             this.flatTiles = this.tiles.flat()
         },
+        moveUp(){
+            this.playerPosition.y=(this.playerPosition.y)-1;
+            console.log(this.playerPosition)
+            this.onMovePlayerOnClick(this.playerPosition.x,this.playerPosition.y)
+        },
+        moveDown(){
+            this.playerPosition.y=(this.playerPosition.y)+1;
+            console.log(this.playerPosition)
+            this.onMovePlayerOnClick(this.playerPosition.x,this.playerPosition.y)
+        },
+        moveRight(){
+            this.playerPosition.x=(this.playerPosition.x)-1;
+            console.log(this.playerPosition)
+            this.onMovePlayerOnClick(this.playerPosition.x,this.playerPosition.y)
+        },
+        moveLeft(){
+            this.playerPosition.x=(this.playerPosition.x)+1;
+            console.log(this.playerPosition)
+            this.onMovePlayerOnClick(this.playerPosition.x,this.playerPosition.y)
+        },
+        
+
     },
     created(){
         if(this.displayGrid = true){
             if(this.difficulty == "Easy"){
+                this.playerPosition.x=2
+                this.playerPosition.y=7
                 let size = 10
                 for(let col = 0; col < size; col++){
                     this.tiles[col] = []
@@ -202,6 +234,8 @@ export default{
 
             }
             else if(this.difficulty == "Normal"){
+                this.playerPosition.x=2
+                this.playerPosition.y=7
                 let size = 10
                 for(let col = 0; col < size; col++){
                     this.tiles[col] = []
